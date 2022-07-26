@@ -18,12 +18,6 @@ public:
             return res;
         }
         
-        else if( nums[0]*nums[1] > nums[nums.size()-1]*nums[nums.size()-2])
-        {
-            res=(nums[0]*nums[1]*nums[nums.size()-1]);
-            
-            return res;
-        }
         else if( nums[0]*nums[1]*nums[nums.size()-1] >                                                nums[nums.size()-1]*nums[nums.size()-2]*nums[nums.size()-3])
         {
             res=(nums[0]*nums[1]*nums[nums.size()-1] );
