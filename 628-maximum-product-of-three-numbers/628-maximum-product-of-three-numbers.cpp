@@ -6,6 +6,10 @@ public:
         
         int res=1,i=nums.size()-1;
         
+        int val1= nums[0]*nums[1]*nums[nums.size()-1];
+        
+        int val2=nums[nums.size()-1]*nums[nums.size()-2]*nums[nums.size()-3];
+        
         if((nums[0]<=0 && nums[nums.size()-1]<=0) || nums.size()==3)
          {
             int j=3;
@@ -18,17 +22,11 @@ public:
             return res;
         }
         
-        else if( nums[0]*nums[1]*nums[nums.size()-1] >                                                nums[nums.size()-1]*nums[nums.size()-2]*nums[nums.size()-3])
+        else if( val1 > val2 )                                            
         {
-            res=(nums[0]*nums[1]*nums[nums.size()-1] );
-            
-            return res;
+            return val1;
         }
-        else{
-            res=(nums[nums.size()-3]*nums[nums.size()-2]*nums[nums.size()-1]);
-            return res;
-        }
+        else  return val2;
         
-        return res;
     }
 };
