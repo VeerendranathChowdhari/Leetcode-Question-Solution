@@ -4,19 +4,19 @@ public:
         
         sort(nums.begin(),nums.end());
         
-        int res=1,i=nums.size()-1;
+        int res=1,i=nums.size();
         
-        int val1= nums[0]*nums[1]*nums[nums.size()-1];
+        int val1= nums[0]*nums[1]*nums[i-1];
         
-        int val2=nums[nums.size()-1]*nums[nums.size()-2]*nums[nums.size()-3];
+        int val2=nums[i-1]*nums[i-2]*nums[i-3];
         
-        if((nums[0]<=0 && nums[nums.size()-1]<=0) || nums.size()==3)
+        if((nums[0]<=0 && nums[i-1]<=0) || i==3)
          {
             int j=3;
             while(j--)
             {
-              res*=nums[i];
               i--;
+              res*=nums[i];
             }
             
             return res;
