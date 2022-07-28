@@ -1,10 +1,10 @@
 class Solution {
 public:
     
-    vector<vector<int>> isPair(vector<int>&nums,int st,int n,int sum)
+    vector<vector<int>> isPair(vector<int>&nums,int st,int n,int sum,set<vector<int>>&se)
     {
         unordered_set<int> s;
-        set<vector<int>> se;
+
         vector<vector<int>> res;
         
         for(int i=st;i<n;i++)
@@ -20,11 +20,6 @@ public:
             }
             
             s.insert(nums[i]);
-        }
-        
-        for(auto it:se)
-        {
-            res.push_back(it);
         }
         
         return res;
@@ -43,13 +38,8 @@ public:
             // to avoid duplicates EX: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,0,]
             if(i==0 || nums[i-1]!=nums[i])
             {
-              vector<vector<int>> ans=isPair(nums,i+1,nums.size(),-(nums[i]));
+              vector<vector<int>> ans=isPair(nums,i+1,nums.size(),-(nums[i]),s);
             
-                for(auto it:ans)
-                {
-                    sort(it.begin(),it.end());
-                    s.insert(it);
-                }
             }
               
         }
