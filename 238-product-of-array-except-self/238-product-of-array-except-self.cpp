@@ -2,41 +2,26 @@ class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
         
-       vector<int> left(nums.size()),right(nums.size()),res(nums.size());
-            
-        if(nums.size()==0)return left;
+        int n=nums.size();
         
-        if(nums.size()==1)return nums;
+        vector<int> res(n),right(n);
         
-        left[0]=0;right[nums.size()-1]=0;
-        cout<<"check-1"<<endl;
-        //Filling Left-Array
-        unsigned int prev=nums[0];
+        right[n-1]=1;
         
-        for(int i=1;i<nums.size();i++)
+        for(int i=n-2;i>=0;i--)
         {
-            left[i]=prev;
-            prev*=nums[i];
+            right[i]=right[i+1]*nums[i+1];
         }
         
-        //filling right
-        unsigned int prev1=nums[nums.size()-1];
-        for(int i=nums.size()-2;i>=0;i--)
-        {
-            right[i]=prev1;
-            prev1*=nums[i];
-        }
         
-        res[0]=right[0];
-        res[nums.size()-1]=left[nums.size()-1];
+        int leftPrd=1;
         
-        for(int i=1;i<nums.size()-1;i++)
+        for(int i=0;i<n;i++)
         {
-            res[i]=(left[i]*right[i]);
-            
+            res[i]=leftPrd*right[i];
+            leftPrd*=nums[i];
         }
         
         return res;
-        
     }
 };
