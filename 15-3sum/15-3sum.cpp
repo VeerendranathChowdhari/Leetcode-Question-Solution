@@ -1,56 +1,45 @@
 class Solution {
 public:
-    
-    vector<vector<int>> isPair(vector<int>&nums,int st,int n,int sum,set<vector<int>>&se)
-    {
-        unordered_set<int> s;
-
-        vector<vector<int>> res;
-        
-        for(int i=st;i<n;i++)
-        {
-            if(s.find(sum-nums[i])!=s.end())
-            {
-                vector<int> v={sum-nums[i],nums[i],-(sum)};
-                
-                sort(v.begin(),v.end());
-                
-                se.insert(v);
-                v.clear();
-            }
-            
-            s.insert(nums[i]);
-        }
-        
-        return res;
-    }
-    
     vector<vector<int>> threeSum(vector<int>& nums) {
+        
+        int n=nums.size();
+        
+        if(n<3)return {};
+        
+        vector<vector<int>> result;
         
         sort(nums.begin(),nums.end());
         
-        set<vector<int>> s;
-        
-        vector<vector<int>> resThreeSum;
-        
-        for(int i=0;i<nums.size();i++)
+        for(int i=0;i<n-2;i++)//we are leaving last 2 elements for j and k(pair)
         {
-            // to avoid duplicates EX: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,0,]
-            if(i==0 || nums[i-1]!=nums[i])
+            if(i==0 || nums[i]!=nums[i-1])//to avoid duplicates
             {
-              vector<vector<int>> ans=isPair(nums,i+1,nums.size(),-(nums[i]),s);
-            
+                 int j=i+1,k=n-1; //finding pair
+                
+                 while(j<k)
+                 {
+                     int sum=nums[i]+nums[j]+nums[k];//ex:[-2,-1,0,1,2,3]
+                     
+                     if(sum==0)
+                     {
+                         result.push_back({nums[i],nums[j],nums[k]});
+                         //to avoid duplicates
+                         // ex:[-2,-1,-1,0,1,2,3,3]
+                         while(j<k && nums[j]==nums[j+1])j++;
+                         while(j<k && nums[k]==nums[k-1])k--;
+                         
+                         j++,k--;
+                     }
+                     
+                     else if(sum>0)k--;
+                     
+                     else j++;
+                 }
             }
-              
+           
         }
         
-         for(auto it:s)
-        {
-            resThreeSum.push_back(it);
-        }
-        
-        
-        return resThreeSum;
+        return result;
         
     }
 };
