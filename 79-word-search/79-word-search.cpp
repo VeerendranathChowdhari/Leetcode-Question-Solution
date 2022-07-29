@@ -5,9 +5,7 @@ public:
     {
         
         if(n==0 && board[i][j]==word[n])return true;//last character matches
-        
-        if(n==0 && board[i][j]!=word[n])return false;//last character  notmatches
-        
+         
         if(board[i][j]!=word[n])return false;//current word not matches
         
         vis[i][j]=true;
