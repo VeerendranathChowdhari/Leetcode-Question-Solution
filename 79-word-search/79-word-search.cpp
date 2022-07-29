@@ -8,19 +8,23 @@ public:
          
         if(board[i][j]!=word[n])return false;//current word not matches
         
-        char ch=board[i][j];
-        board[i][j]='9';
+        board[i][j]-=65;
+        
+        //char ch=board[i][j];
+        //board[i][j]='9';
         
         //search in top
-        if((i-1>=0 && '9'!=board[i-1][j] && helper(board,word,n-1,i-1,j)))return true;
+        if((i-1>=0 && helper(board,word,n-1,i-1,j)))return true;
         //search in left
-        else if (j-1>=0 && '9'!=board[i][j-1] && helper(board,word,n-1,i,j-1))return true;
+        else if (j-1>=0 &&helper(board,word,n-1,i,j-1))return true;
         //search in bottom
-        else if(i+1<row && '9'!=board[i+1][j]  && helper(board,word,n-1,i+1,j))return true;
+        else if(i+1<row && helper(board,word,n-1,i+1,j))return true;
         //search in right
-        else if(j+1<col && '9'!=board[i][j+1] && helper(board,word,n-1,i,j+1))return true;
+        else if(j+1<col &&  helper(board,word,n-1,i,j+1))return true;
         
-        board[i][j]=ch;
+        //board[i][j]=ch;
+        
+        board[i][j]+=65;
         
         return false;
     }
