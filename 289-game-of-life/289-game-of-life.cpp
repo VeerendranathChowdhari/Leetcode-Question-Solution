@@ -35,7 +35,7 @@ public:
         
         col=board[0].size();
     
-        vector<vector<int>>board1=board;
+        vector<vector<int>>board1(row,vector<int>(col));
         
         for(int i=0;i<board.size();i++)
         {
